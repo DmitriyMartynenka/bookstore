@@ -3,7 +3,7 @@ package org.example.bookstore.controllers;
 import lombok.RequiredArgsConstructor;
 import org.example.bookstore.mapper.BookToRequestMapper;
 import org.example.bookstore.model.Book;
-import org.example.bookstore.model.BookRequest;
+import org.example.bookstore.model.request.BookRequest;
 import org.example.bookstore.service.BookService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class BookController {
 
     @GetMapping
     public List<Book> addAllBooks(@RequestParam(required = false) String name) {
-        if(name!=null) {
+        if (name != null) {
             return bookService.getBooksByAuthor(name);
         }
         return bookService.getAllBooks();
@@ -31,6 +31,6 @@ public class BookController {
 
     @GetMapping("/{id}")
     public Book getBookById(@PathVariable Long id) {
-        return  bookService.getBookById(id);
+        return bookService.getBookById(id);
     }
 }

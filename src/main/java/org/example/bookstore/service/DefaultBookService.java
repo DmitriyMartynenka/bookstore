@@ -22,7 +22,6 @@ public class DefaultBookService implements BookService {
         BookEntity bookEntity = bookRepository.findById(id)
                 .orElseThrow(() -> new BookEntityNotFoundException("Book not found " + id));
         return mapper.BookEntityToBook(bookEntity);
-
     }
 
     @Override
@@ -44,10 +43,9 @@ public class DefaultBookService implements BookService {
     public List<Book> getBooksByAuthor(String name) {
         Iterable<BookEntity> authorBooks = bookRepository.findAllByAuthorContaining(name);
         List<Book> books = new ArrayList<>();
-        for(BookEntity bookEntity : authorBooks) {
+        for (BookEntity bookEntity : authorBooks) {
             books.add(mapper.BookEntityToBook(bookEntity));
         }
         return books;
     }
-
 }
